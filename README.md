@@ -1,5 +1,7 @@
 # Nginx-Docker-Spring-Boot
 
+This example has a basic configuration of Nginx, Tomcat, PostgreSQL, it is necessary to activate HTTPS / SSL security in Tomcat.
+
 ### Configure the values of file database_env 
 
 *Path: /docker/postgres/*
@@ -38,4 +40,8 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 
 ## Execute the following scripts in the public schema. Database: wallet-zelle
 
+soon
 
+## System Architecture
+
+soon
