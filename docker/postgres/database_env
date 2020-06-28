@@ -1,0 +1,3 @@
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=root.jmtizure.k201
+POSTGRES_DB=wallet-zelle
