@@ -1,8 +1,8 @@
 # Nginx-Docker-Spring-Boot
 
-This example has a basic configuration of NGINX, Tomcat, PostgreSQL, it is necessary to activate HTTPS / SSL security in Tomcat and NGINX for a production environment.
+This example has a basic configuration of NGINX, Tomcat and PostgreSQL. It is necessary to activate HTTPS / SSL security in Tomcat and NGINX for a production environment.
 
-### Configure the values of file database_env 
+### Configure the values of file database_env for PostgreSQL
 
 *Path: /docker/postgres/*
 
@@ -12,7 +12,7 @@ POSTGRES_PASSWORD=root.jmtizure.k201
 POSTGRES_DB=wallet-zelle
 ```
 
-### Configure the values of file application.properties 
+### Configure the values of file application.properties for Spring Boot and Tomcat
 
 *Path: /configuration/src/main/resources/*
 
@@ -31,6 +31,13 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 ```
 
 ![Screenshot](prtsc/Deploy-Wallet-1.png)
+
+The War file is automatically moved to the docker folder (/docker/tomcat/war/) to form the container image.
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker/tomcat/war$ ls
+api-war-1.0.war
+```
 
 ### Execute docker-compose 
 
