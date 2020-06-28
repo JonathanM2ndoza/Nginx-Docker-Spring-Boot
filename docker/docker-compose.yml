@@ -4,9 +4,6 @@ services:
   api-wallet:
     build: ./tomcat
     image: api-zelle:1.0
-    volumes:
-      - ./tomcat/war:/usr/local/tomcat/webapps/
-      - ./logs:/usr/local/tomcat/logs/
     ports:
       - 8081:8080
     networks:
