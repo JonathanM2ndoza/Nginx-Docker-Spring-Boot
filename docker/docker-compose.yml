@@ -3,7 +3,7 @@ version: '3'
 services:
   api-wallet:
     build: ./tomcat
-    image: api-zelle:1.0
+    image: api-wallet:1.0
     ports:
       - 8081:8080
     networks:
@@ -12,11 +12,10 @@ services:
       - db-wallet
 
   db-wallet:
-    image: postgres:12.3
+    build: ./postgres
+    image: db-wallet:1.0
     ports:
       - 15432:5432
-    env_file:
-      - ./postgres/database_env
     networks:
       - database_network
     volumes:

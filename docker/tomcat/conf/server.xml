@@ -152,6 +152,8 @@
             <Host name="localhost"  appBase="webapps"
                   unpackWARs="true" autoDeploy="true">
 
+                <Context path="" docBase="api-war-1.0" reloadable="true" ></Context>
+
                 <!-- SingleSignOn valve, share authentication between web applications
                      Documentation at: /docs/config/valve.html -->
                 <!--

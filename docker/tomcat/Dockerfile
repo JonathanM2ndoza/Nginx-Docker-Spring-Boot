@@ -7,5 +7,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN ["rm", "-fr", "/usr/local/tomcat/webapps/api-war-1.0.war"]
 
 COPY ./war/api-war-1.0.war /usr/local/tomcat/webapps/api-war-1.0.war
+COPY ./conf/* /usr/local/tomcat/conf/
 
 CMD ["catalina.sh", "run"]
