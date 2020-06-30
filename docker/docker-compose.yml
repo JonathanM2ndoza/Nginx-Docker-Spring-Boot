@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  api-wallet:
-    build: ./tomcat
-    image: api-wallet:1.0
-    ports:
-      - 8081:8080
-    networks:
-      - database_network
-    volumes:
-      - api_volume:/usr/local/tomcat/data
-    depends_on:
-      - db-wallet
 
   db-wallet:
     build: ./postgres
@@ -22,6 +11,29 @@ services:
       - database_network
     volumes:
       - database_volume:/var/lib/postgresql/data
+
+  api-wallet:
+    build: ./tomcat
+    image: api-wallet:1.0
+    ports:
+      - 8081:8080
+    networks:
+      - database_network
+      - nginx_network
+    volumes:
+      - api_volume:/usr/local/tomcat/data
+    depends_on:
+      - db-wallet
+
+  nginx-wallet:
+    build: ./nginx
+    image: nginx-wallet:1.0
+    ports:
+      - 80:80
+    depends_on:
+      - api-wallet
+    networks:
+      - nginx_network
 
 networks:
   nginx_network:
