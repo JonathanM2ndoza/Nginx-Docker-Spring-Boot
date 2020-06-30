@@ -9,4 +9,11 @@ RUN ["rm", "-fr", "/usr/local/tomcat/webapps/api-war-1.0.war"]
 COPY ./war/api-war-1.0.war /usr/local/tomcat/webapps/api-war-1.0.war
 COPY ./conf/* /usr/local/tomcat/conf/
 
+RUN cd /usr/local/tomcat \
+    && mkdir data \
+    && cd data \
+    && mkdir customer_documents \
+    && cd ../ \
+    && chmod -R 755 data
+
 CMD ["catalina.sh", "run"]

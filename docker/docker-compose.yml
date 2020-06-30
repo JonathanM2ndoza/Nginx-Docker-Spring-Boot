@@ -8,6 +8,8 @@ services:
       - 8081:8080
     networks:
       - database_network
+    volumes:
+      - api_volume:/usr/local/tomcat/data
     depends_on:
       - db-wallet
 
@@ -30,3 +32,4 @@ networks:
 
 volumes:
   database_volume:
+  api_volume:
