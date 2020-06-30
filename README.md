@@ -79,11 +79,11 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 
 ![Screenshot](prtsc/Deploy-Wallet-10.png)
 
-### Log docker_nginx-wallet_1
+### Log NGINX
 
 ![Screenshot](prtsc/Deploy-Wallet-8.png)
 
-### Log docker_api-wallet_1
+### Log Tomcat
 
 ![Screenshot](prtsc/Deploy-Wallet-9.png)
 
