@@ -58,20 +58,35 @@ api-war-1.0.war
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker$ docker-compose up -d --build
 
-Successfully built 329df9b3541e
-Successfully tagged db-wallet:1.0
-
-Successfully built bd317f70c861
-Successfully tagged api-wallet:1.0
+Successfully built 8fa0fc3835ef
+Successfully tagged nginx-wallet:1.0
 Creating docker_db-wallet_1 ... done
 Creating docker_api-wallet_1 ... done
+Creating docker_nginx-wallet_1 ... done
+jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker$ 
 
 ```
 
+### Database scripts executed
 
 ![Screenshot](prtsc/Deploy-Wallet-6.png)
 
-## NGINX
+### Containers
+
+![Screenshot](prtsc/Deploy-Wallet-7.png)
+
+### Postman Sign In
+
+![Screenshot](prtsc/Deploy-Wallet-10.png)
+
+### Log docker_nginx-wallet_1
+
+![Screenshot](prtsc/Deploy-Wallet-8.png)
+
+### Log docker_api-wallet_1
+
+![Screenshot](prtsc/Deploy-Wallet-9.png)
+
 
 ## System Architecture
 
