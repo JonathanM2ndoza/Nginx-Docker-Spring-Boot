@@ -19,6 +19,8 @@ ENV POSTGRES_DB=wallet-zelle
 
 ![Screenshot](prtsc/Deploy-Wallet-2.png)
 
+*Note: It is recommended to generate a complete script to create the schema, tables and functions.*
+
 ### Configure the values of file application.properties for Spring Boot and Tomcat
 
 They are the same data added in the Database Dockerfile.
