@@ -17,6 +17,7 @@ services:
     image: api-wallet:1.0
     ports:
       - 8081:8080
+      - 9000:8000
     networks:
       - database_network
       - nginx_network
