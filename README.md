@@ -1,6 +1,6 @@
 # Nginx-Docker-Spring-Boot
 
-This example has a basic configuration of NGINX, Tomcat and PostgreSQL. It is necessary to activate HTTPS / SSL security in Tomcat and NGINX for a production environment.
+This example has a basic configuration of NGINX, Tomcat and PostgreSQL for a Testing or Development environment. For a production environment it is necessary to activate HTTPS / SSL security in Tomcat and NGINX.
 
 ### Configure the values of file Dockerfile for PostgreSQL
 
