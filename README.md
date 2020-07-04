@@ -2,6 +2,37 @@
 
 This example has a basic configuration of NGINX, Tomcat and PostgreSQL for a Testing or Development environment. For a production environment it is necessary to activate HTTPS / SSL security in Tomcat and NGINX.
 
+## Technical Prerequisites
+
+Install the following applications and development tools:
+
+- Docker 19.03.12
+- Docker Compose 1.26.0
+- Java 8
+- Maven 3.6.0
+
+```shell
+
+jmendoza@jmendoza-ThinkPad-T420:~$ docker -v
+Docker version 19.03.12, build 48a66213fe
+
+jmendoza@jmendoza-ThinkPad-T420:~$ docker-compose -v
+docker-compose version 1.26.0, build d4451659
+
+jmendoza@jmendoza-ThinkPad-T420:~$ java -version
+java version "1.8.0_221"
+Java(TM) SE Runtime Environment (build 1.8.0_221-b11)
+Java HotSpot(TM) 64-Bit Server VM (build 25.221-b11, mixed mode)
+
+jmendoza@jmendoza-ThinkPad-T420:~$ mvn -v
+Apache Maven 3.6.0
+Maven home: /usr/share/maven
+Java version: 1.8.0_221, vendor: Oracle Corporation, runtime: /usr/lib/jvm/jdk1.8.0_221/jre
+Default locale: es_VE, platform encoding: UTF-8
+OS name: "linux", version: "5.3.0-61-generic", arch: "amd64", family: "unix"
+
+```
+
 ### Configure the values of file Dockerfile for PostgreSQL
 
 *Path: /docker/postgres/*
@@ -81,11 +112,25 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 
 ![Screenshot](prtsc/Deploy-Wallet-10.png)
 
+### Review PostgreSQL logs
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~$ docker logs --follow docker_db-wallet_1 
+```
+
 ### Log NGINX
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~$ docker logs --follow docker_nginx-wallet_1 
+```
 
 ![Screenshot](prtsc/Deploy-Wallet-8.png)
 
 ### Log Tomcat
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~$ docker logs --follow docker_api-wallet_1 
+```
 
 ![Screenshot](prtsc/Deploy-Wallet-9.png)
 
