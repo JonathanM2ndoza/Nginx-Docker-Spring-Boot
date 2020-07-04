@@ -7,7 +7,7 @@ import org.springframework.context.annotation.PropertySources;
 @Configuration
 @PropertySources({
         @PropertySource("classpath:application.properties"),
-        @PropertySource("classpath:message_customer.properties")
+        @PropertySource("classpath:customer_message.properties")
 })
 public class LoadProperties {
 }
