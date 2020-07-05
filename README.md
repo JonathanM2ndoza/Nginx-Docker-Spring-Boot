@@ -154,28 +154,28 @@ Starting nginx-wallet ... done
 
 ## Update .war file inside the api-wallet container
 
-Make your code change and only if there are no changes in BD then no need to recreate all images and docker containers.
+- Make your code change and only if there are no changes in BD then no need to recreate all images and docker containers.
 
-Just compile the project with the following command:
+- Just compile the project with the following command:
 
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot$ mvn clean install
 ```
 
-The .war file will be automatically moved to the folder: /docker/tomcat/war/
+- The .war file will be automatically moved to the folder: /docker/tomcat/war/
 
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker/tomcat/war$ ls
 api-war-1.0.war
 ```
 
-Run the following command to update the .war
+- Run the following command to update the .war
 
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker/tomcat/war$ docker cp api-war-1.0.war docker_api-wallet_1:/usr/local/tomcat/webapps/
 ```
 
-It is not necessary to restart the environment. The file will be deployed automatically within the Tomcat server and the change will be available.
+*It is not necessary to restart the environment. The file will be deployed automatically within the Tomcat server and the change will be available.*
 
 ![Screenshot](prtsc/Deploy-Wallet-11.png)
 
