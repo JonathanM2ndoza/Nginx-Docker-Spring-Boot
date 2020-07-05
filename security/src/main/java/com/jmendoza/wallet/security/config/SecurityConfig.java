@@ -1,6 +1,8 @@
 package com.jmendoza.wallet.security.config;
 
 import com.jmendoza.wallet.security.filter.SecurityRequestFilter;
+import com.jmendoza.wallet.security.handler.AccessDeniedHandlerJwt;
+import com.jmendoza.wallet.security.handler.AuthenticationEntryPointJwt;
 import com.jmendoza.wallet.security.service.SecurityUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,15 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private Environment env;
-
     @Autowired
     private SecurityUserDetailsService securityUserDetailsService;
-
     @Autowired
     private SecurityRequestFilter securityRequestFilter;
-
     @Autowired
-    private AuthEntryPointJwt authEntryPointJwt;
+    private AuthenticationEntryPointJwt authenticationEntryPointJwt;
+    @Autowired
+    private AccessDeniedHandlerJwt accessDeniedHandlerJwt;
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -55,10 +56,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         httpSecurity
                 .httpBasic().disable()
+                .formLogin().disable()
                 .authorizeRequests()
                 .antMatchers(env.getRequiredProperty("security.uri.white-list").split(",")).permitAll()
                 .anyRequest().authenticated().and()
-                .exceptionHandling().authenticationEntryPoint(authEntryPointJwt).and()
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPointJwt).and()
+                .exceptionHandling().accessDeniedHandler(accessDeniedHandlerJwt).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.addFilterBefore(securityRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }

@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import java.util.Date;
-
 @ControllerAdvice
 public class CustomExceptionHandler {
 
@@ -17,22 +15,31 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        ExceptionResponse exceptionResponse = ExceptionResponse.builder()
+                .code(String.valueOf(HttpStatus.NOT_FOUND))
+                .payload(ex.getMessage())
+                .build();
         loggerException.error(ex);
-        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({GlobalException.class})
     public ResponseEntity globalExceptionHandler(GlobalException ex, WebRequest request) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        ExceptionResponse exceptionResponse = ExceptionResponse.builder()
+                .code(String.valueOf(HttpStatus.INTERNAL_SERVER_ERROR))
+                .payload(ex.getMessage())
+                .build();
         loggerException.error(ex);
-        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler({ParameterNotFoundException.class})
     public ResponseEntity parameterNotFoundExceptionHandler(ParameterNotFoundException ex, WebRequest request) {
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
+        ExceptionResponse exceptionResponse = ExceptionResponse.builder()
+                .code(String.valueOf(HttpStatus.BAD_REQUEST))
+                .payload(ex.getMessage())
+                .build();
         loggerException.error(ex);
-        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
