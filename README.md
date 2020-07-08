@@ -152,7 +152,7 @@ Starting api-wallet   ... done
 Starting nginx-wallet ... done
 ```
 
-## Update .war file inside the api-wallet container
+## Update .war file inside the docker_api-wallet_1 container
 
 - Make your code change and only if there are no changes in BD then no need to recreate all images and docker containers.
 
@@ -176,6 +176,21 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 ```
 
 *It is not necessary to restart the environment. The file will be deployed automatically within the Tomcat server and the change will be available.*
+
+*In case of taking the changes, then restart the entire environment.*
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker$ docker-compose stop
+Stopping docker_nginx-wallet_1 ... done
+Stopping docker_api-wallet_1   ... done
+Stopping docker_db-wallet_1    ... done
+
+jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/docker$ docker-compose start
+Starting db-wallet    ... done
+Starting api-wallet   ... done
+Starting nginx-wallet ... done
+```
+
 
 ![Screenshot](prtsc/Deploy-Wallet-11.png)
 
@@ -236,7 +251,6 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 ![Screenshot](prtsc/Deploy-Wallet-15.png)
 
 ![Screenshot](prtsc/Deploy-Wallet-16.png)
-
 
 ## System Architecture
 
