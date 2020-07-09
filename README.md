@@ -191,7 +191,6 @@ Starting api-wallet   ... done
 Starting nginx-wallet ... done
 ```
 
-
 ![Screenshot](prtsc/Deploy-Wallet-11.png)
 
 ## If you have changes in code and database 
