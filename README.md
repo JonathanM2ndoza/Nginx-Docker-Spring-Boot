@@ -253,4 +253,4 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 
 ## System Architecture
 
-soon
+![Screenshot](prtsc/Basic-System-Architecture.jpg)
