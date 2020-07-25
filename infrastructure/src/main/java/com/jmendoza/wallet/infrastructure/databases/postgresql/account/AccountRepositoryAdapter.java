@@ -2,7 +2,7 @@ package com.jmendoza.wallet.infrastructure.databases.postgresql.account;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jmendoza.wallet.common.datetime.OffsetDateTimeDeserializer;
+import com.jmendoza.wallet.common.datetime.LocalDateTimeDeserializer;
 import com.jmendoza.wallet.common.datetime.UtilDateTime;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.account.Account;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Component
 public class AccountRepositoryAdapter implements CreateAccountPort, GetAccountPort {
@@ -26,7 +26,7 @@ public class AccountRepositoryAdapter implements CreateAccountPort, GetAccountPo
     @Autowired
     private UtilDateTime utilDateTime;
     @Autowired
-    private OffsetDateTimeDeserializer offsetDateTimeDeserializer;
+    private LocalDateTimeDeserializer localDateTimeDeserializer;
 
     @Override
     public void createAccount(Account account) throws GlobalException {
@@ -40,7 +40,7 @@ public class AccountRepositoryAdapter implements CreateAccountPort, GetAccountPo
             callableStatement.setLong(2, Long.parseLong(account.getCustomerId()));
             callableStatement.setString(3, account.getAccountNumber());
             callableStatement.setDouble(4, account.getCurrentBalance());
-            callableStatement.setObject(5, utilDateTime.getDateTimeByZoneId());
+            callableStatement.setTimestamp(5, utilDateTime.localDateTimeToTimestamp(account.getCreatedAt()), utilDateTime.getTimeZone());
 
             callableStatement.execute();
 
@@ -67,7 +67,7 @@ public class AccountRepositoryAdapter implements CreateAccountPort, GetAccountPo
 
             pGobject = (PGobject) callableStatement.getObject(1);
             if (pGobject != null) {
-                Gson gson = new GsonBuilder().registerTypeAdapter(OffsetDateTime.class, offsetDateTimeDeserializer).create();
+                Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, localDateTimeDeserializer).create();
                 account = gson.fromJson(pGobject.toString(), Account.class);
             }
 

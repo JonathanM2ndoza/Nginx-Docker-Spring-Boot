@@ -7,7 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -20,6 +20,6 @@ public class Account {
     private String customerId;
     private String accountNumber;
     private Double currentBalance;
-    private OffsetDateTime createdAt;
+    private LocalDateTime createdAt;
     private List<Transaction> transactionList;
 }

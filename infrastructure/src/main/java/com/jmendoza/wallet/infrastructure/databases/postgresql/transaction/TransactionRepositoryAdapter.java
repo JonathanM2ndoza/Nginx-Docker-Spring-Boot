@@ -2,7 +2,7 @@ package com.jmendoza.wallet.infrastructure.databases.postgresql.transaction;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jmendoza.wallet.common.datetime.OffsetDateTimeDeserializer;
+import com.jmendoza.wallet.common.datetime.LocalDateTimeDeserializer;
 import com.jmendoza.wallet.common.datetime.UtilDateTime;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.account.Account;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Component
 public class TransactionRepositoryAdapter implements CreateTransactionPort, GetTransactionsByAccountIdPort, GetTransactionPort {
@@ -27,7 +27,7 @@ public class TransactionRepositoryAdapter implements CreateTransactionPort, GetT
     @Autowired
     private UtilDateTime utilDateTime;
     @Autowired
-    private OffsetDateTimeDeserializer offsetDateTimeDeserializer;
+    private LocalDateTimeDeserializer localDateTimeDeserializer;
 
     @Override
     public void createTransaction(Transaction transaction) throws GlobalException {
@@ -42,7 +42,7 @@ public class TransactionRepositoryAdapter implements CreateTransactionPort, GetT
             callableStatement.setLong(3, Long.parseLong(transaction.getTransactionTypeId()));
             callableStatement.setDouble(4, transaction.getAmount());
             callableStatement.setString(5, transaction.getDescription());
-            callableStatement.setObject(6, utilDateTime.getDateTimeByZoneId());
+            callableStatement.setTimestamp(6, utilDateTime.getCurrentTimestamp(), utilDateTime.getTimeZone());
 
             callableStatement.execute();
 
@@ -69,7 +69,7 @@ public class TransactionRepositoryAdapter implements CreateTransactionPort, GetT
 
             pGobject = (PGobject) callableStatement.getObject(1);
             if (pGobject != null) {
-                Gson gson = new GsonBuilder().registerTypeAdapter(OffsetDateTime.class, offsetDateTimeDeserializer).create();
+                Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, localDateTimeDeserializer).create();
                 account = gson.fromJson(pGobject.toString(), Account.class);
             }
 
@@ -96,7 +96,7 @@ public class TransactionRepositoryAdapter implements CreateTransactionPort, GetT
 
             pGobject = (PGobject) callableStatement.getObject(1);
             if (pGobject != null) {
-                Gson gson = new GsonBuilder().registerTypeAdapter(OffsetDateTime.class, offsetDateTimeDeserializer).create();
+                Gson gson = new GsonBuilder().registerTypeAdapter(LocalDateTime.class, localDateTimeDeserializer).create();
                 transaction = gson.fromJson(pGobject.toString(), Transaction.class);
             }
 

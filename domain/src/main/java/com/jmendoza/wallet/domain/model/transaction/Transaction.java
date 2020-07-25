@@ -5,7 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 
-import java.time.OffsetDateTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -17,5 +17,5 @@ public class Transaction {
     private String transactionTypeId;
     private Double amount;
     private String description;
-    private OffsetDateTime createdAt;
+    private LocalDateTime createdAt;
 }
