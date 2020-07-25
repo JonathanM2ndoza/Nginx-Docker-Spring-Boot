@@ -251,6 +251,19 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 
 ![Screenshot](prtsc/Deploy-Wallet-16.png)
 
+
+## Create Account and Create Transactions
+
+![Screenshot](prtsc/Deploy-Wallet-17.png)
+
+![Screenshot](prtsc/Deploy-Wallet-18.png)
+
+![Screenshot](prtsc/Deploy-Wallet-19.png)
+
+![Screenshot](prtsc/Deploy-Wallet-20.png)
+
+![Screenshot](prtsc/Deploy-Wallet-21.png)
+
 ## System Architecture
 
 ![Screenshot](prtsc/Basic-System-Architecture.jpg)
