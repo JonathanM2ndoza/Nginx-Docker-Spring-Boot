@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+function login() {
+	var userData = {"email" : "", "password" : ""};
+	userData.email = $('#user').val();
+	userData.password = $('#password').val();
+	
+	$.ajax({
+		type : "POST",
+		url : "http://172.20.0.3/api/v1/auth/signin",
+		data : JSON.stringify(userData),
+        contentType: 'application/json',
+		success : function(msg) {
+			alert("success");
+		},
+		error : function(msg) {
+			alert(msg);
+		}
+	});
+}	
+</script>
+</head>
+<body>
+	<h1> Login </h1>
+
+	<form method="POST" action="/">
+		User ID :  <input type="text" name="User" id="user"/><br />
+		Password : <input type="password" name="Password" id="password"/><br />
+		<br /> <input type="button" value="Submit" onClick="login();"/>
+	</form>
+
+</body>
+</html>
