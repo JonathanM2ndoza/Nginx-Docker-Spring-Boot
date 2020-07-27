@@ -63,11 +63,14 @@ public class AuthenticationControllerTest {
                                 fieldWithPath("firstName").description("firstName description"),
                                 fieldWithPath("lastName").description("lastName description"),
                                 fieldWithPath("email").description("email description"),
-                                subsectionWithPath("roles.[]").attributes().description("roles description"),
-                                subsectionWithPath("roles.[].roleId").attributes().description("roleId description"),
-                                subsectionWithPath("roles.[].roleName").attributes().description("roleName description"),
+                                subsectionWithPath("roles").attributes().description("roles description"),
                                 fieldWithPath("createdAt").description("createdAt description"),
-                                fieldWithPath("updatedAt").description("updatedAt description"))
+                                fieldWithPath("updatedAt").description("updatedAt description")),
+
+                        responseFields(
+                                beneathPath("roles").withSubsectionId("roles"),
+                                fieldWithPath("roleId").description("roleId description"),
+                                fieldWithPath("roleName").description("roleName description"))
 
                 ));
 

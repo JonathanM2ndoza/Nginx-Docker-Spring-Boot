@@ -615,17 +615,17 @@ Content-Type: application/json
 Content-Length: 503
 
 {
-  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YUBnbWFpbC5jb20iLCJleHAiOjE1OTU4Mjg5NTQsImlhdCI6MTU5NTgyODU5NH0.4WH0AW38uKsYeM7--BNBnHq1VMy_FpB1x1dXH78yTtg",
+  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YUBnbWFpbC5jb20iLCJleHAiOjE1OTU4MzAzMTksImlhdCI6MTU5NTgyOTk1OX0.wP8ecN6sWs1wmnvFZA6-Ev9_EzMNC4L7PO4ibJUdUoY",
   "customerId" : "1",
   "firstName" : "Jonathan",
   "lastName" : "Mendoza",
   "email" : "jmendoza@gmail.com",
   "roles" : [ {
-    "roleId" : "2",
-    "roleName" : "ROLE_USER"
-  }, {
     "roleId" : "1",
     "roleName" : "ROLE_ADMIN"
+  }, {
+    "roleId" : "2",
+    "roleName" : "ROLE_USER"
   } ],
   "createdAt" : "2020-07-24T04:08:29.634+00:00",
   "updatedAt" : "2020-07-24T04:08:29.634+00:00"
@@ -674,19 +674,9 @@ Content-Length: 503
 <td class="tableblock halign-left valign-top"><p class="tableblock">email description</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[]</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">roles description</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[].roleId</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">roleId description</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[].roleName</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">roleName description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>createdAt</code></p></td>
@@ -700,6 +690,35 @@ Content-Length: 503
 </tr>
 </tbody>
 </table>
+<div class="sect5">
+<h6 id="_array_roles"><a class="link" href="#_array_roles">Array: <code>roles</code></a></h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleId description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roleName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleName description</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -708,7 +727,7 @@ Content-Length: 503
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 00:57:25 -0430
+Last updated 2020-07-27 01:33:49 -0430
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">

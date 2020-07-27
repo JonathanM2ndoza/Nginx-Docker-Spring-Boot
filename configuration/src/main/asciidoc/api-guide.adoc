@@ -64,8 +64,8 @@ include::{snippets}/auth/signin/request-fields.adoc[]
 include::{snippets}/auth/signin/http-response.adoc[]
 ===== Response Fields
 include::{snippets}/auth/signin/response-fields.adoc[]
-
-
+====== Array: `roles`
+include::{snippets}/auth/signin/response-fields-roles.adoc[]
 
 
 
