@@ -54,19 +54,20 @@ public class AuthenticationControllerTest {
                 .andExpect(status().isOk()).andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andDo(document("auth/signin", preprocessRequest(prettyPrint()), preprocessResponse(prettyPrint()),
 
-                        requestFields(fieldWithPath("email").description("Email descriptions"),
-                                fieldWithPath("password").description("Password descriptions")),
+                        requestFields(fieldWithPath("email").description("email description"),
+                                fieldWithPath("password").description("password description")),
 
                         responseFields(
-                                fieldWithPath("token").description("token descriptions"),
-                                fieldWithPath("customerId").description("customerId descriptions"),
-                                fieldWithPath("firstName").description("firstName descriptions"),
-                                fieldWithPath("lastName").description("lastName descriptions"),
-                                fieldWithPath("email").description("email descriptions"),
-                                //fieldWithPath("roles").attributes().description("roles descriptions"),
-                                subsectionWithPath("roles.[]").attributes().description("roles descriptions"),
-                                fieldWithPath("createdAt").description("createdAt descriptions"),
-                                fieldWithPath("updatedAt").description("updatedAt descriptions"))
+                                fieldWithPath("token").description("token description"),
+                                fieldWithPath("customerId").description("customerId description"),
+                                fieldWithPath("firstName").description("firstName description"),
+                                fieldWithPath("lastName").description("lastName description"),
+                                fieldWithPath("email").description("email description"),
+                                subsectionWithPath("roles.[]").attributes().description("roles description"),
+                                subsectionWithPath("roles.[].roleId").attributes().description("roleId description"),
+                                subsectionWithPath("roles.[].roleName").attributes().description("roleName description"),
+                                fieldWithPath("createdAt").description("createdAt description"),
+                                fieldWithPath("updatedAt").description("updatedAt description"))
 
                 ));
 

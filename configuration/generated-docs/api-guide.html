@@ -5,7 +5,8 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<title>Introduction</title>
+<meta name="author" content="Test Doc&lt;jmtizure@gmail.com&gt;">
+<title>API Documentation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -429,34 +430,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="book">
+<body class="book toc2 toc-left">
 <div id="header">
+<h1>API Documentation</h1>
+<div class="details">
+<span id="author" class="author">Test Doc&lt;jmtizure@gmail.com&gt;</span><br>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel0">
+<li><a href="#overview">Introduction</a>
+<ul class="sectlevel1">
+<li><a href="#overview-about">1. About</a></li>
+<li><a href="#overview-http-headers">2. HTTP Headers</a></li>
+</ul>
+</li>
+<li><a href="#resources">Resources</a>
+<ul class="sectlevel1">
+<li><a href="#resources-auth">3. AUTHENTICATION</a>
+<ul class="sectlevel2">
+<li><a href="#resources-auth-signin">3.1. Sign In</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>=API Documentation
-Test Doc&lt;<a href="mailto:jmtizure@gmail.com">jmtizure@gmail.com</a>&gt;;
-:doctype: book
-:icons: font
-:source-highlighter: highlightjs
-:toc: left
-:toclevels: 2
-:sectlinks:
-:sectnums:</p>
-</div>
-</div>
-</div>
-<h1 id="overview" class="sect0">Introduction</h1>
+<h1 id="overview" class="sect0"><a class="link" href="#overview">Introduction</a></h1>
 <div class="openblock partintro">
 <div class="content">
-Temas esenciales a dominar antes de usar esta documentación
+Agregar la introducción para la documentación del API
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview-about">About</h2>
+<h2 id="overview-about"><a class="link" href="#overview-about">1. About</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Sobre esta version</p>
@@ -488,7 +499,7 @@ Temas esenciales a dominar antes de usar esta documentación
 </div>
 </div>
 <div class="sect1">
-<h2 id="overview-http-headers">HTTP Headers</h2>
+<h2 id="overview-http-headers"><a class="link" href="#overview-http-headers">2. HTTP Headers</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Los endpoints deben tener los siguientes elementos en el header del REQUEST:</p>
@@ -513,33 +524,33 @@ Temas esenciales a dominar antes de usar esta documentación
 <td class="tableblock halign-left valign-top"><p class="tableblock">Json Web Token</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Authorization: {token}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Token de acceso creado con JWT (proporcionado por endpoint /api/v1/auth/signin)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Token de acceso JWT</p></td>
 </tr>
 </tbody>
 </table>
 <div class="ulist">
 <ul>
 <li>
-<p>Asumir que siempre van estos headers a menos que se indique explicitamente</p>
+<p>Enviar estos headers en los request, a menos que indique lo contrario.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
-<h1 id="resources" class="sect0">Resources</h1>
+<h1 id="resources" class="sect0"><a class="link" href="#resources">Resources</a></h1>
 <div class="openblock partintro">
 <div class="content">
-Endpoints que exponen los recursos necesarios
+Endpoints &#8230;&#8203;.
 </div>
 </div>
 <div class="sect1">
-<h2 id="resources-auth">AUTHENTICATION</h2>
+<h2 id="resources-auth"><a class="link" href="#resources-auth">3. AUTHENTICATION</a></h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>Operaciones de authentication para los usuarios</p>
 </div>
 <div class="sect2">
-<h3 id="resources-auth-signin">Sign In</h3>
+<h3 id="resources-auth-signin"><a class="link" href="#resources-auth-signin">3.1. Sign In</a></h3>
 <div class="paragraph">
 <p>Request <code>POST</code> para autenticar a un usuario</p>
 </div>
@@ -551,10 +562,10 @@ Endpoints que exponen los recursos necesarios
 </ul>
 </div>
 <div class="sect3">
-<h4 id="_request">Request</h4>
+<h4 id="_request"><a class="link" href="#_request">3.1.1. Request</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /api/v1/auth/signin HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/auth/signin HTTP/1.1
 Content-Type: application/json
 Content-Length: 64
 Host: localhost:8080
@@ -566,7 +577,7 @@ Host: localhost:8080
 </div>
 </div>
 <div class="sect4">
-<h5 id="_request_fields">Request Fields</h5>
+<h5 id="_request_fields"><a class="link" href="#_request_fields">Request Fields</a></h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -584,37 +595,37 @@ Host: localhost:8080
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Email descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">email description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Password descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password description</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_response">Response</h4>
+<h4 id="_response"><a class="link" href="#_response">3.1.2. Response</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
 Content-Length: 503
 
 {
-  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YUBnbWFpbC5jb20iLCJleHAiOjE1OTU4MjYwNTQsImlhdCI6MTU5NTgyNTY5NH0.04XRisZMxeX_GJnfAw_6zzFUdKZ7uk55ZZJTIq38fM8",
+  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YUBnbWFpbC5jb20iLCJleHAiOjE1OTU4MjcwNjMsImlhdCI6MTU5NTgyNjcwM30.nPDa2Q-k5PGj3MOcvR4dzOXq0vFSgJGiJDququiuFzw",
   "customerId" : "1",
   "firstName" : "Jonathan",
   "lastName" : "Mendoza",
   "email" : "jmendoza@gmail.com",
   "roles" : [ {
-    "roleId" : "1",
-    "roleName" : "ROLE_ADMIN"
-  }, {
     "roleId" : "2",
     "roleName" : "ROLE_USER"
+  }, {
+    "roleId" : "1",
+    "roleName" : "ROLE_ADMIN"
   } ],
   "createdAt" : "2020-07-24T04:08:29.634+00:00",
   "updatedAt" : "2020-07-24T04:08:29.634+00:00"
@@ -622,7 +633,7 @@ Content-Length: 503
 </div>
 </div>
 <div class="sect4">
-<h5 id="_response_fields">Response Fields</h5>
+<h5 id="_response_fields"><a class="link" href="#_response_fields">Response Fields</a></h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -640,42 +651,52 @@ Content-Length: 503
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>token</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">token descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">token description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>customerId</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">customerId descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">customerId description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>firstName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">firstName descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">firstName description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastName</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lastName descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastName description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">email descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">email description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[]</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">roles descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roles description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[].roleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleId description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles.[].roleName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleName description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>createdAt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">createdAt descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">createdAt description</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>updatedAt</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">updatedAt descriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">updatedAt description</p></td>
 </tr>
 </tbody>
 </table>
@@ -687,8 +708,11 @@ Content-Length: 503
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 00:05:11 -0430
+Last updated 2020-07-27 00:39:57 -0430
 </div>
 </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
 </body>
 </html>

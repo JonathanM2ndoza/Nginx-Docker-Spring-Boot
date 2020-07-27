@@ -8,22 +8,20 @@ Test Doc<jmtizure@gmail.com>;
 :sectlinks:
 :sectnums:
 
-
 [[overview]]
 = Introduction
-Temas esenciales a dominar antes de usar esta documentación
-
+Agregar la introducción para la documentación del API
 
 [[overview-about]]
 == About
-Sobre esta version
+Nueva versión disponible
 |===
 | Version | Fecha | Ramas Integradas | Observaciones
 
 |1.0
 |26-08-2020
-|Esto es una prueba
-|Esto es una prueba para la documentación
+|Agregar Ramas Integradas
+|Agregar Observaciones
 
 |===
 
@@ -37,15 +35,15 @@ Los endpoints deben tener los siguientes elementos en el header del REQUEST:
 |Json Web Token
 |Security
 |`+Authorization: {token}+`
-|Token de acceso creado con JWT (proporcionado por endpoint /api/v1/auth/signin)
+|Token de acceso JWT
 
 |===
-* Asumir que siempre van estos headers a menos que se indique explicitamente
+* Enviar estos headers en los request, a menos que se indique lo contrario.
 
 
 [[resources]]
 = Resources
-Endpoints que exponen los recursos necesarios
+Endpoints ....
 
 [[resources-auth]]
 == AUTHENTICATION
@@ -55,7 +53,7 @@ Operaciones de authentication para los usuarios
 === Sign In
 Request `POST` para autenticar a un usuario
 
-* Operacion NO requiere headers
+* Esta operacion NO requiere headers
 
 ==== Request
 include::{snippets}/auth/signin/http-request.adoc[]
