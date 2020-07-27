@@ -1,0 +1,73 @@
+= API Documentation
+Test Doc<jmtizure@gmail.com>;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 2
+:sectlinks:
+:sectnums:
+
+
+[[overview]]
+= Introduction
+Temas esenciales a dominar antes de usar esta documentación
+
+
+[[overview-about]]
+== About
+Sobre esta version
+|===
+| Version | Fecha | Ramas Integradas | Observaciones
+
+|1.0
+|26-08-2020
+|Esto es una prueba
+|Esto es una prueba para la documentación
+
+|===
+
+[[overview-http-headers]]
+== HTTP Headers
+Los endpoints deben tener los siguientes elementos en el header del REQUEST:
+
+|===
+|Header|Type|Structure|Description
+
+|Json Web Token
+|Security
+|`+Authorization: {token}+`
+|Token de acceso creado con JWT (proporcionado por endpoint /api/v1/auth/signin)
+
+|===
+* Asumir que siempre van estos headers a menos que se indique explicitamente
+
+
+[[resources]]
+= Resources
+Endpoints que exponen los recursos necesarios
+
+[[resources-auth]]
+== AUTHENTICATION
+Operaciones de authentication para los usuarios
+
+[[resources-auth-signin]]
+=== Sign In
+Request `POST` para autenticar a un usuario
+
+* Operacion NO requiere headers
+
+==== Request
+include::{snippets}/auth/signin/http-request.adoc[]
+===== Request Fields
+include::{snippets}/auth/signin/request-fields.adoc[]
+
+==== Response
+include::{snippets}/auth/signin/http-response.adoc[]
+===== Response Fields
+include::{snippets}/auth/signin/response-fields.adoc[]
+
+
+
+
+
