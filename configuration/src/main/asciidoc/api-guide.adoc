@@ -67,5 +67,24 @@ include::{snippets}/auth/signin/response-fields.adoc[]
 ====== Array: `roles`
 include::{snippets}/auth/signin/response-fields-roles.adoc[]
 
+[[resources-auth-signup]]
+=== Sign Up
+Request `POST` para crear a un usuario
+
+* Esta operacion NO requiere headers
+
+==== Request
+include::{snippets}/auth/signup/http-request.adoc[]
+===== Request Fields
+include::{snippets}/auth/signup/request-fields.adoc[]
+====== Array: `roles`
+include::{snippets}/auth/signup/request-fields-roles.adoc[]
+
+==== Response
+include::{snippets}/auth/signup/http-response.adoc[]
+===== Response Fields
+include::{snippets}/auth/signup/response-fields.adoc[]
+
+
 
 

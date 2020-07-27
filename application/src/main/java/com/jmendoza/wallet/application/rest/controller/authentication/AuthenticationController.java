@@ -1,6 +1,7 @@
 package com.jmendoza.wallet.application.rest.controller.authentication;
 
 import com.jmendoza.wallet.application.rest.request.authentication.SignInRequest;
+import com.jmendoza.wallet.application.rest.request.authentication.SignUpRequest;
 import com.jmendoza.wallet.application.rest.response.authentication.SignInResponse;
 import com.jmendoza.wallet.application.rest.response.authentication.SignUpResponse;
 import com.jmendoza.wallet.common.exception.GlobalException;
@@ -10,6 +11,7 @@ import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.customer.GetCustomerByEmailPort;
 import com.jmendoza.wallet.security.service.AuthenticateService;
 import lombok.AllArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,9 +29,12 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticateService authenticateService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @PostMapping("/signup")
-    public ResponseEntity<SignUpResponse> signUp(@RequestBody Customer customer) throws ParameterNotFoundException, GlobalException {
+    public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws ParameterNotFoundException, GlobalException {
+        Customer customer = modelMapper.map(signUpRequest, Customer.class);
         createCustomerUseCase.createCustomer(customer);
         return ResponseEntity.ok().body(SignUpResponse.builder().customerId(customer.getCustomerId()).build());
     }

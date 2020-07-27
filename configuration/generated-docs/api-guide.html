@@ -452,6 +452,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#resources-auth">3. AUTHENTICATION</a>
 <ul class="sectlevel2">
 <li><a href="#resources-auth-signin">3.1. Sign In</a></li>
+<li><a href="#resources-auth-signup">3.2. Sign Up</a></li>
 </ul>
 </li>
 </ul>
@@ -567,11 +568,11 @@ Endpoints disponibles en el API
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/auth/signin HTTP/1.1
 Content-Type: application/json
-Content-Length: 64
+Content-Length: 65
 Host: localhost:8080
 
 {
-  "email" : "jmendoza@gmail.com",
+  "email" : "jmendoza1@gmail.com",
   "password" : "123456789"
 }</code></pre>
 </div>
@@ -612,23 +613,23 @@ Host: localhost:8080
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 503
+Content-Length: 507
 
 {
-  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YUBnbWFpbC5jb20iLCJleHAiOjE1OTU4MzAzMTksImlhdCI6MTU5NTgyOTk1OX0.wP8ecN6sWs1wmnvFZA6-Ev9_EzMNC4L7PO4ibJUdUoY",
-  "customerId" : "1",
-  "firstName" : "Jonathan",
-  "lastName" : "Mendoza",
-  "email" : "jmendoza@gmail.com",
+  "token" : "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbWVuZG96YTFAZ21haWwuY29tIiwiZXhwIjoxNTk1ODY5MDExLCJpYXQiOjE1OTU4Njg2NTF9.Oj6o_PLxIjDcB3mlNSZITih-lmCjFqoG1Nhx1nAIOLI",
+  "customerId" : "5",
+  "firstName" : "Jonathan1",
+  "lastName" : "Mendoza1",
+  "email" : "jmendoza1@gmail.com",
   "roles" : [ {
-    "roleId" : "1",
-    "roleName" : "ROLE_ADMIN"
-  }, {
     "roleId" : "2",
     "roleName" : "ROLE_USER"
+  }, {
+    "roleId" : "1",
+    "roleName" : "ROLE_ADMIN"
   } ],
-  "createdAt" : "2020-07-24T04:08:29.634+00:00",
-  "updatedAt" : "2020-07-24T04:08:29.634+00:00"
+  "createdAt" : "2020-07-27T16:50:50.785+00:00",
+  "updatedAt" : "2020-07-27T16:50:50.785+00:00"
 }</code></pre>
 </div>
 </div>
@@ -722,12 +723,161 @@ Content-Length: 503
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="resources-auth-signup"><a class="link" href="#resources-auth-signup">3.2. Sign Up</a></h3>
+<div class="paragraph">
+<p>Request <code>POST</code> para crear a un usuario</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Esta operacion NO requiere headers</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_request_2"><a class="link" href="#_request_2">3.2.1. Request</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">POST /api/v1/auth/signup HTTP/1.1
+Content-Type: application/json
+Content-Length: 250
+Host: localhost:8080
+
+{
+  "firstName" : "Jonathan1",
+  "lastName" : "Mendoza1",
+  "email" : "jmendoza1@gmail.com",
+  "password" : "123456789",
+  "roles" : [ {
+    "roleId" : "2",
+    "roleName" : "ROLE_USER"
+  }, {
+    "roleId" : "1",
+    "roleName" : "ROLE_ADMIN"
+  } ]
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_request_fields_2"><a class="link" href="#_request_fields_2">Request Fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>firstName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">firstName description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lastName description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">email description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roles</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roles description</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect5">
+<h6 id="_array_roles_2"><a class="link" href="#_array_roles_2">Array: <code>roles</code></a></h6>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roleId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleId description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>roleName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">roleName description</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_response_2"><a class="link" href="#_response_2">3.2.2. Response</a></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 24
+
+{
+  "customerId" : "5"
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_response_fields_2"><a class="link" href="#_response_fields_2">Response Fields</a></h5>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>customerId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">customerId description</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-07-27 01:33:49 -0430
+Last updated 2020-07-27 12:17:53 -0430
 </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/github.min.css">
