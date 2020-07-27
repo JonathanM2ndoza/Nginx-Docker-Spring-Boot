@@ -49,11 +49,31 @@ Endpoints disponibles en el API
 == AUTHENTICATION
 Operaciones de authentication para los usuarios
 
+
+[[resources-auth-signup]]
+=== Sign Up
+Request `POST` para crear a un usuario
+
+* Esta operacion no requiere headers
+
+==== Request
+include::{snippets}/auth/signup/http-request.adoc[]
+===== Request Fields
+include::{snippets}/auth/signup/request-fields.adoc[]
+====== Array: `roles`
+include::{snippets}/auth/signup/request-fields-roles.adoc[]
+
+==== Response
+include::{snippets}/auth/signup/http-response.adoc[]
+===== Response Fields
+include::{snippets}/auth/signup/response-fields.adoc[]
+
+
 [[resources-auth-signin]]
 === Sign In
 Request `POST` para autenticar a un usuario
 
-* Esta operacion NO requiere headers
+* Esta operacion no requiere headers
 
 ==== Request
 include::{snippets}/auth/signin/http-request.adoc[]
@@ -67,23 +87,6 @@ include::{snippets}/auth/signin/response-fields.adoc[]
 ====== Array: `roles`
 include::{snippets}/auth/signin/response-fields-roles.adoc[]
 
-[[resources-auth-signup]]
-=== Sign Up
-Request `POST` para crear a un usuario
-
-* Esta operacion NO requiere headers
-
-==== Request
-include::{snippets}/auth/signup/http-request.adoc[]
-===== Request Fields
-include::{snippets}/auth/signup/request-fields.adoc[]
-====== Array: `roles`
-include::{snippets}/auth/signup/request-fields-roles.adoc[]
-
-==== Response
-include::{snippets}/auth/signup/http-response.adoc[]
-===== Response Fields
-include::{snippets}/auth/signup/response-fields.adoc[]
 
 
 

@@ -337,7 +337,7 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 [2020-07-27 01:42:44.594] [INFO] [jmendoza-ThinkPad-T420] [main] [test.context.SpringBootTestContextBootstrapper] | Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.jmendoza.wallet.configuration.ConfigurationApplicationTest], using SpringBootContextLoader
 
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.395 s - in com.jmendoza.wallet.configuration.ConfigurationApplicationTest
-[INFO] Running com.jmendoza.wallet.configuration.controller.authentication.SignUpTest
+[INFO] Running com.jmendoza.wallet.configuration.controller.authentication.AuthenticationControllerTest
 
 [INFO] 
 [INFO] Results:
@@ -379,3 +379,9 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 ![Screenshot](prtsc/Deploy-Wallet-23.png)
 
 ![Screenshot](prtsc/Deploy-Wallet-24.png)
+
+![Screenshot](prtsc/Deploy-Wallet-25.png)
+
+![Screenshot](prtsc/Deploy-Wallet-26.png)
+
+![Screenshot](prtsc/Deploy-Wallet-27.png)
