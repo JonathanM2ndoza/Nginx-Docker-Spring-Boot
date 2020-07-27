@@ -267,3 +267,115 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 ## System Architecture
 
 ![Screenshot](prtsc/Basic-System-Architecture.jpg)
+
+## Spring REST Docs
+
+**Note: Before run maven, please add the following entry in your hosts file**
+
+```shell
+172.19.0.2 db-wallet
+```
+
+Find the IP of the Database container (docker_db-wallet_1)
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_db-wallet_1
+```
+
+Now if you can run: mvn clean install
+
+```shell
+jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot$ mvn clean install
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] Nginx-Docker-Spring-Boot                                           [pom]
+[INFO] common                                                             [jar]
+[INFO] domain                                                             [jar]
+[INFO] security                                                           [jar]
+[INFO] application                                                        [jar]
+[INFO] infrastructure                                                     [jar]
+[INFO] configuration                                                      [jar]
+[INFO] api-war                                                            [war]
+[INFO] 
+[INFO] ---------------------< com.jmendoza.wallet:zelle >----------------------
+[INFO] Building Nginx-Docker-Spring-Boot 1.0                              [1/8]
+[INFO] --------------------------------[ pom ]---------------------------------
+
+[INFO] ---------------------< com.jmendoza.wallet:common >---------------------
+[INFO] Building common 1.0                                                [2/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] ---------------------< com.jmendoza.wallet:domain >---------------------
+[INFO] Building domain 1.0                                                [3/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] --------------------< com.jmendoza.wallet:security >--------------------
+[INFO] Building security 1.0                                              [4/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] ------------------< com.jmendoza.wallet:application >-------------------
+[INFO] Building application 1.0                                           [5/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] -----------------< com.jmendoza.wallet:infrastructure >-----------------
+[INFO] Building infrastructure 1.0                                        [6/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+
+[INFO] -----------------< com.jmendoza.wallet:configuration >------------------
+[INFO] Building configuration 1.0                                         [7/8]
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ configuration ---
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.jmendoza.wallet.configuration.ConfigurationApplicationTest
+[2020-07-27 01:42:44.594] [INFO] [jmendoza-ThinkPad-T420] [main] [test.context.SpringBootTestContextBootstrapper] | Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.jmendoza.wallet.configuration.ConfigurationApplicationTest], using SpringBootContextLoader
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.395 s - in com.jmendoza.wallet.configuration.ConfigurationApplicationTest
+[INFO] Running com.jmendoza.wallet.configuration.authentication.AuthenticationControllerTest
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- asciidoctor-maven-plugin:1.5.8:process-asciidoc (generate-docs) @ configuration ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Rendered /home/jmendoza/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot/configuration/src/main/asciidoc/api-guide.adoc
+
+[INFO] --------------------< com.jmendoza.wallet:api-war >---------------------
+[INFO] Building api-war 1.0                                               [8/8]
+[INFO] --------------------------------[ war ]---------------------------------
+
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for Nginx-Docker-Spring-Boot 1.0:
+[INFO] 
+[INFO] Nginx-Docker-Spring-Boot ........................... SUCCESS [  2.425 s]
+[INFO] common ............................................. SUCCESS [  9.448 s]
+[INFO] domain ............................................. SUCCESS [  3.676 s]
+[INFO] security ........................................... SUCCESS [  3.141 s]
+[INFO] application ........................................ SUCCESS [  2.770 s]
+[INFO] infrastructure ..................................... SUCCESS [  2.981 s]
+[INFO] configuration ...................................... SUCCESS [ 55.123 s]
+[INFO] api-war ............................................ SUCCESS [  8.383 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:30 min
+[INFO] Finished at: 2020-07-27T01:43:40-04:00
+[INFO] ------------------------------------------------------------------------
+
+```
+
+![Screenshot](prtsc/Deploy-Wallet-22.png)
+
+![Screenshot](prtsc/Deploy-Wallet-23.png)
+
+![Screenshot](prtsc/Deploy-Wallet-24.png)
