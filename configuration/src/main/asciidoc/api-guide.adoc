@@ -14,9 +14,9 @@ Agregar la introducción para la documentación del API
 
 [[overview-about]]
 == About
-Nueva versión disponible
+Novedades de esta versión
 |===
-| Version | Fecha | Ramas Integradas | Observaciones
+| Versión | Fecha | Ramas Integradas | Observaciones
 
 |1.0
 |26-08-2020
@@ -27,7 +27,7 @@ Nueva versión disponible
 
 [[overview-http-headers]]
 == HTTP Headers
-Los endpoints deben tener los siguientes elementos en el header del REQUEST:
+Los REQUEST deben tener los siguientes elementos en el header:
 
 |===
 |Header|Type|Structure|Description
@@ -38,12 +38,12 @@ Los endpoints deben tener los siguientes elementos en el header del REQUEST:
 |Token de acceso JWT
 
 |===
-* Enviar estos headers en los request, a menos que se indique lo contrario.
+* Enviar estos headers en los REQUEST, a menos que se indique lo contrario.
 
 
 [[resources]]
 = Resources
-Endpoints ....
+Endpoints disponibles en el API
 
 [[resources-auth]]
 == AUTHENTICATION
