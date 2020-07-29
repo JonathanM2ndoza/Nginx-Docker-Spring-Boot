@@ -139,15 +139,10 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M3</version>
-            </plugin>
-          <!--  <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.20.1</version>
-                <configuration>
+               <!-- <configuration>
                     <skipTests>true</skipTests>
-                </configuration>
-            </plugin>-->
+                </configuration>-->
+            </plugin>
         </plugins>
     </build>
 
