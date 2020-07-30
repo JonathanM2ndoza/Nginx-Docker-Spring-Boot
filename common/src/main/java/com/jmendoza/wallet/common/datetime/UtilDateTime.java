@@ -19,7 +19,7 @@ public class UtilDateTime {
     private DateTimeFormatter formatterTimestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public Timestamp getCurrentTimestamp() {
-        return Timestamp.valueOf(LocalDateTime.now(TimeZone.getTimeZone(env.getProperty("db.postgres.zone.id")).toZoneId()).format(formatterTimestamp));
+        return Timestamp.valueOf(LocalDateTime.now(TimeZone.getTimeZone(env.getProperty("time.zone.id")).toZoneId()).format(formatterTimestamp));
     }
 
     public Timestamp localDateTimeToTimestamp(LocalDateTime localDateTime) {
@@ -27,7 +27,7 @@ public class UtilDateTime {
     }
 
     public Calendar getTimeZone() {
-        return Calendar.getInstance(TimeZone.getTimeZone(env.getProperty("db.postgres.zone.id")));
+        return Calendar.getInstance(TimeZone.getTimeZone(env.getProperty("time.zone.id")));
     }
 
     public LocalDateTime timestampToLocalDateTime(Timestamp timestamp) {
