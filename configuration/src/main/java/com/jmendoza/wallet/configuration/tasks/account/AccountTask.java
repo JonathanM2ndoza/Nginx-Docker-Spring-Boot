@@ -1,4 +1,4 @@
-package com.jmendoza.wallet.infrastructure.tasks.account;
+package com.jmendoza.wallet.configuration.tasks.account;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
