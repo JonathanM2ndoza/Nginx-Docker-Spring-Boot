@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RoleRepository extends JpaRepository<RoleJpaEntity, Long> {
+public interface RoleJpaRepository extends JpaRepository<RoleJpaEntity, Long> {
     Optional<RoleJpaEntity> findByName(Roles name);
 }
