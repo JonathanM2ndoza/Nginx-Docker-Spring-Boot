@@ -1,5 +1,7 @@
 # Nginx-Docker-Spring-Boot
 
+Example of how to use Hexagonal Architecture, S.O.L.I.D Principles and the basic of Domain Driven Design (DDD) 
+
 This example has a basic configuration of NGINX, Tomcat and PostgreSQL for a Testing or Development environment. For a production environment it is necessary to activate HTTPS / SSL security in Tomcat and NGINX.
 
 ## Technical Prerequisites
