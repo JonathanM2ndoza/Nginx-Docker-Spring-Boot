@@ -13,8 +13,7 @@ public class AccountTask {
     @Scheduled(cron = "${task.account.cron.expression}", zone = "${time.zone.id}")
     public void syncAccountTask() {
         try {
-            //TODO: Invoke Adapter of Infrastructure (Data Base, API, Message Broker)
-            System.out.println("Invoke Adapter of Infrastructure (Data Base, API, Message Broker)");
+            loggerException.debug("Invoke Adapter of Infrastructure (Data Base, API, Message Broker)");
         } catch (Exception e) {
             loggerException.error(e);
         }
