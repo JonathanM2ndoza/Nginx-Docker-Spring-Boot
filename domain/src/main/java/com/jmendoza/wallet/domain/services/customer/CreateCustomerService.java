@@ -37,7 +37,6 @@ public class CreateCustomerService implements CreateCustomerUseCase {
             if (existsCustomerPort.existsByEmail(customer.getEmail()))
                 throw new GlobalException(CustomerConstanst.THIS_EMAIL_IS_ALREADY_REGISTERED);
 
-            // TODO: Eliminar, el Frontend debe enviar la clave cifrada.
             customer.setPassword(passwordEncodePort.passwordEncoder(customer.getPassword()));
             createCustomerPort.createCustomer(customer);
         } catch (Exception e) {

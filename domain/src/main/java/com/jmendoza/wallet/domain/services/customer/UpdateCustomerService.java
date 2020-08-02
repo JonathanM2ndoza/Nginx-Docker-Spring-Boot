@@ -31,7 +31,6 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
             if (customer1 == null)
                 throw new ResourceNotFoundException(CustomerConstanst.CUSTOMER_NOT_FOUND + id);
 
-            // TODO: Eliminar, el Frontend debe enviar la clave cifrada.
             if (!StringUtils.isBlank(customer.getPassword()))
                 customer.setPassword(passwordEncodePort.passwordEncoder(customer.getPassword()));
 
