@@ -9,8 +9,11 @@ import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.customer.CreateCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.ExistsCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.PasswordEncodePort;
+import com.jmendoza.wallet.domain.services.account.CreateAccountService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @AllArgsConstructor
 @UseCase
@@ -19,6 +22,7 @@ public class CreateCustomerService implements CreateCustomerUseCase {
     private CreateCustomerPort createCustomerPort;
     private PasswordEncodePort passwordEncodePort;
     private ExistsCustomerPort existsCustomerPort;
+    private static final Logger loggerException = LogManager.getLogger(CreateCustomerService.class);
 
     @Override
     public void createCustomer(Customer customer) throws GlobalException, ParameterNotFoundException {
@@ -40,6 +44,7 @@ public class CreateCustomerService implements CreateCustomerUseCase {
             customer.setPassword(passwordEncodePort.passwordEncoder(customer.getPassword()));
             createCustomerPort.createCustomer(customer);
         } catch (Exception e) {
+            loggerException.error(e);
             throw new GlobalException("createCustomer: " + e.getMessage());
         }
     }

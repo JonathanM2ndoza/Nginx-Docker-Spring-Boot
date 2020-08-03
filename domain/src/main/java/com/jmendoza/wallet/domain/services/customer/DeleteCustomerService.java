@@ -9,6 +9,8 @@ import com.jmendoza.wallet.domain.ports.inbound.customer.DeleteCustomerUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.customer.DeleteCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.GetCustomerIdPort;
 import lombok.AllArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @AllArgsConstructor
 @UseCase
@@ -16,6 +18,7 @@ public class DeleteCustomerService implements DeleteCustomerUseCase {
 
     private GetCustomerIdPort getCustomerIdPort;
     private DeleteCustomerPort deleteCustomerPort;
+    private static final Logger loggerException = LogManager.getLogger(DeleteCustomerService.class);
 
     @Override
     public void deleteCustomer(String id) throws ResourceNotFoundException, GlobalException {
@@ -26,6 +29,7 @@ public class DeleteCustomerService implements DeleteCustomerUseCase {
 
             deleteCustomerPort.deleteCustomer(customer);
         } catch (Exception e) {
+            loggerException.error(e);
             throw new GlobalException("deleteCustomer: " + e.getMessage());
         }
     }

@@ -9,12 +9,15 @@ import com.jmendoza.wallet.domain.ports.inbound.account.CreateAccountUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.account.CreateAccountPort;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @AllArgsConstructor
 @UseCase
 public class CreateAccountService implements CreateAccountUseCase {
 
     private CreateAccountPort createAccountPort;
+    private static final Logger loggerException = LogManager.getLogger(CreateAccountService.class);
 
     @Override
     public void createAccount(Account account) throws GlobalException, ParameterNotFoundException {
@@ -30,6 +33,7 @@ public class CreateAccountService implements CreateAccountUseCase {
             createAccountPort.createAccount(account);
 
         } catch (Exception e) {
+            loggerException.error(e);
             throw new GlobalException("createAccount: " + e.getMessage());
         }
     }

@@ -11,6 +11,8 @@ import com.jmendoza.wallet.domain.ports.outbound.customer.PasswordEncodePort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.UpdateCustomerPort;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.Conditions;
 import org.modelmapper.ModelMapper;
 
@@ -23,6 +25,7 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
     private PasswordEncodePort passwordEncodePort;
 
     private ModelMapper modelMapper;
+    private static final Logger loggerException = LogManager.getLogger(UpdateCustomerService.class);
 
     @Override
     public void updateCustomer(String id, Customer customer) throws ResourceNotFoundException, GlobalException {
@@ -39,6 +42,7 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
             modelMapper.map(customer, customer1);
             updateCustomerPort.updateCustomer(customer1);
         } catch (Exception e) {
+            loggerException.error(e);
             throw new GlobalException("updateCustomer: " + e.getMessage());
         }
     }
