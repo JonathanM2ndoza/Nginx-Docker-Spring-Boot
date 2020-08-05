@@ -272,7 +272,7 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 
 ## Spring REST Docs
 
-**Note: Before run maven, please add the following entry in your hosts file**
+**Note: Before run maven with test, please add the following entry in your hosts file**
 
 ```shell
 172.19.0.2 db-wallet
@@ -283,6 +283,19 @@ Find the IP of the Database container (docker_db-wallet_1)
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_db-wallet_1
 ```
+
+Comment skipTests
+
+```shell
+<plugin>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>3.0.0-M3</version>
+   <!-- <configuration>
+        <skipTests>true</skipTests>
+    </configuration>-->
+</plugin>
+```
+
 
 Now if you can run: mvn clean install
 
