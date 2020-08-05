@@ -8,7 +8,7 @@ import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
 import com.jmendoza.wallet.domain.model.customer.Customer;
 import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
-import com.jmendoza.wallet.domain.ports.outbound.customer.GetCustomerByEmailPort;
+import com.jmendoza.wallet.domain.ports.inbound.customer.GetCustomerByEmailUseCase;
 import com.jmendoza.wallet.security.service.AuthenticateService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private CreateCustomerUseCase createCustomerUseCase;
-    private GetCustomerByEmailPort getCustomerByEmailPort;
+    private GetCustomerByEmailUseCase getCustomerByEmailUseCase;
 
     @Autowired
     private AuthenticateService authenticateService;
@@ -43,7 +43,7 @@ public class AuthenticationController {
     public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest) throws GlobalException {
 
         String token = authenticateService.createToken(signInRequest.getEmail(), signInRequest.getPassword());
-        Customer customer = getCustomerByEmailPort.getCustomerByEmail(signInRequest.getEmail());
+        Customer customer = getCustomerByEmailUseCase.getCustomerByEmail(signInRequest.getEmail());
 
         return ResponseEntity.ok().body(SignInResponse.builder().token(token)
                 .customerId(customer.getCustomerId())
