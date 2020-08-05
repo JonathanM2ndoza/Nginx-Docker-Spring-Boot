@@ -1,5 +1,6 @@
 package com.jmendoza.wallet.infrastructure.databases.postgresql.transaction;
 
+import com.jmendoza.wallet.common.constants.global.DBSchema;
 import com.jmendoza.wallet.common.datetime.UtilDateTime;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.transaction.Transaction;
@@ -23,7 +24,7 @@ public class CreateTransactionAdapter implements CreateTransactionPort {
     @Override
     public void createTransaction(Transaction transaction) throws GlobalException {
 
-        final String functionCall = "{ ? = call create_transaction(?, ?, ?, ?, ?)}";
+        final String functionCall = "{ ? = call " + DBSchema.TRANS_SCHEMA + ".create_transaction(?, ?, ?, ?, ?)}";
 
         try (Connection connection = jdbcTemplate.getDataSource().getConnection();
              CallableStatement callableStatement = connection.prepareCall(functionCall)

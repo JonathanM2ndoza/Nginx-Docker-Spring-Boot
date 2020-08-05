@@ -2,6 +2,7 @@ package com.jmendoza.wallet.infrastructure.databases.postgresql.transaction;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jmendoza.wallet.common.constants.global.DBSchema;
 import com.jmendoza.wallet.common.datetime.LocalDateTimeDeserializer;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.account.Account;
@@ -27,7 +28,7 @@ public class GetTransactionsByAccountIdAdapter implements GetTransactionsByAccou
     @Override
     public Account getTransactionsByAccountId(String accountId) throws GlobalException {
 
-        final String procedureCall = "{ ? = call get_transactions_account(?)}";
+        final String procedureCall = "{ ? = call " + DBSchema.TRANS_SCHEMA + ".get_transactions_account(?)}";
         Account account = null;
 
         try (Connection connection = jdbcTemplate.getDataSource().getConnection();

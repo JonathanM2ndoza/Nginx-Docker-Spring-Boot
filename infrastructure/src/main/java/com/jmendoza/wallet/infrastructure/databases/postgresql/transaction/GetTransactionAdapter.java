@@ -2,6 +2,7 @@ package com.jmendoza.wallet.infrastructure.databases.postgresql.transaction;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.jmendoza.wallet.common.constants.global.DBSchema;
 import com.jmendoza.wallet.common.datetime.LocalDateTimeDeserializer;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.transaction.Transaction;
@@ -26,7 +27,7 @@ public class GetTransactionAdapter implements GetTransactionPort {
     @Override
     public Transaction getTransaction(String transactionId) throws GlobalException {
 
-        final String procedureCall = "{ ? = call get_transaction(?)}";
+        final String procedureCall = "{ ? = call " + DBSchema.TRANS_SCHEMA + ".get_transaction(?)}";
         Transaction transaction = null;
 
         try (Connection connection = jdbcTemplate.getDataSource().getConnection();

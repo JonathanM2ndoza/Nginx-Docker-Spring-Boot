@@ -1,5 +1,6 @@
 package com.jmendoza.wallet.infrastructure.databases.postgresql.account;
 
+import com.jmendoza.wallet.common.constants.global.DBSchema;
 import com.jmendoza.wallet.common.datetime.UtilDateTime;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.account.Account;
@@ -23,7 +24,7 @@ public class CreateAccountAdapter implements CreateAccountPort {
     @Override
     public void createAccount(Account account) throws GlobalException {
 
-        final String functionCall = "{ ? = call create_acount(?, ?, ?, ?)}";
+        final String functionCall = "{ ? = call " + DBSchema.ACCT_SCHEMA + ".create_account(?, ?, ?, ?)}";
 
         try (Connection connection = jdbcTemplate.getDataSource().getConnection();
              CallableStatement callableStatement = connection.prepareCall(functionCall)
