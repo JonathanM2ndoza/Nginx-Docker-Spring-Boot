@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
@@ -19,10 +20,15 @@ import java.time.LocalDateTime;
 
 @Component
 public class GetTransactionAdapter implements GetTransactionPort {
-    @Autowired
+
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private LocalDateTimeDeserializer localDateTimeDeserializer;
+
+    @Autowired
+    public GetTransactionAdapter(final DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public Transaction getTransaction(String transactionId) throws GlobalException {

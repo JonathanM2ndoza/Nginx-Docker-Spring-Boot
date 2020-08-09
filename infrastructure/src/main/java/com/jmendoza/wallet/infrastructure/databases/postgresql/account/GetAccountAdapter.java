@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
@@ -20,10 +21,14 @@ import java.time.LocalDateTime;
 @Component
 public class GetAccountAdapter implements GetAccountPort {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private LocalDateTimeDeserializer localDateTimeDeserializer;
+
+    @Autowired
+    public GetAccountAdapter(final DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public Account getAccount(String accountId) throws GlobalException {

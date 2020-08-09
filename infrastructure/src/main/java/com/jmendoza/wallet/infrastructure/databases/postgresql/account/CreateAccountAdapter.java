@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Types;
@@ -16,10 +17,14 @@ import java.sql.Types;
 @Component
 public class CreateAccountAdapter implements CreateAccountPort {
 
-    @Autowired
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private UtilDateTime utilDateTime;
+
+    @Autowired
+    public CreateAccountAdapter(final DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
 
     @Override
     public void createAccount(Account account) throws GlobalException {
