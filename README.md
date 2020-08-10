@@ -288,9 +288,6 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 
 ![Screenshot](prtsc/Deploy-Wallet-21.png)
 
-## System Architecture
-
-![Screenshot](prtsc/Basic-System-Architecture.jpg)
 
 ## Spring REST Docs
 
@@ -417,3 +414,8 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 ![Screenshot](prtsc/Deploy-Wallet-26.png)
 
 ![Screenshot](prtsc/Deploy-Wallet-27.png)
+
+
+##  Dockerized Application
+
+![Screenshot](prtsc/Basic-System-Architecture.jpg)
