@@ -8,10 +8,12 @@ This example has a basic configuration of NGINX, Tomcat and PostgreSQL for a Tes
 
 Install the following applications and development tools:
 
+- Linux Ubuntu 18.04.4 LTS
 - Docker 19.03.12
 - Docker Compose 1.26.0
 - Java 8
 - Maven 3.6.0
+- IntelliJ IDEA (Recommended)
 
 ```shell
 
@@ -34,6 +36,26 @@ Default locale: es_VE, platform encoding: UTF-8
 OS name: "linux", version: "5.3.0-61-generic", arch: "amd64", family: "unix"
 
 ```
+
+### API project structure
+
+![Screenshot](prtsc/Deploy-Wallet-29.png)
+
+- **api-dinbog-war:** Group the project modules to generate the WAR
+
+- **application:** The application layer provides different adapters for outside entities to interact with the domain through the port.
+
+- **common:** General components for the project
+
+- **configuration:** General settings for the project
+
+- **docker:** Creation of development environment
+
+- **domain:** The domain layer represents the inside of the application and provides ports to interact with application use cases (business logic).
+
+- **infrastructure:** The infrastructure layer provide adapters and server-side logic to interact with the application from the right side. Server-side entities, such as a database or other run-time devices, use these adapters to interact with the domain.
+
+- **security:** Security module for the API
 
 ### Configure the values of file Dockerfile for PostgreSQL
 
@@ -274,30 +296,23 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 
 **Note: Before run maven with test, please add the following entry in your hosts file**
 
-```shell
-172.19.0.2 db-wallet
-```
-
-Find the IP of the Database container (docker_db-wallet_1)
+- Find the IP of the Database container (docker_db-wallet_1)
 
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_db-wallet_1
 ```
 
-Comment skipTests
+- Add the following entry in your hosts file. Path in linux: /etc/hosts
 
 ```shell
-<plugin>
-    <artifactId>maven-surefire-plugin</artifactId>
-    <version>3.0.0-M3</version>
-   <!-- <configuration>
-        <skipTests>true</skipTests>
-    </configuration>-->
-</plugin>
+172.19.0.2 db-wallet
 ```
 
+- Add comment in pom.xml --> configuration of maven-surefire-plugin
 
-Now if you can run: mvn clean install
+![Screenshot](prtsc/Deploy-Wallet-28.png)
+
+- Now if you can run: mvn clean install
 
 ```shell
 jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spring-Boot$ mvn clean install
@@ -388,6 +403,8 @@ jmendoza@jmendoza-ThinkPad-T420:~/IdeaProjects/JonathanM2ndoza/Nginx-Docker-Spri
 [INFO] ------------------------------------------------------------------------
 
 ```
+
+### Generated Documentation
 
 ![Screenshot](prtsc/Deploy-Wallet-22.png)
 
