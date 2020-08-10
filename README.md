@@ -41,7 +41,7 @@ OS name: "linux", version: "5.3.0-61-generic", arch: "amd64", family: "unix"
 
 ![Screenshot](prtsc/Deploy-Wallet-29.png)
 
-- **api-dinbog-war:** Group the project modules to generate the WAR
+- **api-war:** Group the project modules to generate the WAR
 
 - **application:** The application layer provides different adapters for outside entities to interact with the domain through the port.
 
