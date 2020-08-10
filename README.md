@@ -1,6 +1,6 @@
 # Nginx-Docker-Spring-Boot
 
-Example of how to use Hexagonal Architecture, S.O.L.I.D Principles and the basic of Domain Driven Design (DDD) 
+This API use a style of architecture called Hexagonal Architecture and S.O.L.I.D Principles. This API was implemented with Spring Boot and Spring Security (Authentication and Authorization). Securing URLs using JSON Web Tokens (JWT), Spring Boot Data JPA, Spring Boot Data JDBC, PostgreSQL, Log4j2 Asynchronous Loggers.
 
 This example has a basic configuration of NGINX, Tomcat and PostgreSQL for a Testing or Development environment. For a production environment it is necessary to activate HTTPS / SSL security in Tomcat and NGINX.
 
