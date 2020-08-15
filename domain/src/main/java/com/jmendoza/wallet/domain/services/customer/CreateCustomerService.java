@@ -5,24 +5,35 @@ import com.jmendoza.wallet.common.customannotations.UseCase;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
 import com.jmendoza.wallet.domain.model.customer.Customer;
+import com.jmendoza.wallet.domain.model.notification.DataNotification;
 import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.customer.CreateCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.ExistsCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.PasswordEncodePort;
-import com.jmendoza.wallet.domain.services.account.CreateAccountService;
-import lombok.AllArgsConstructor;
+import com.jmendoza.wallet.domain.ports.outbound.notification.SendNotificationPort;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Qualifier;
 
-@AllArgsConstructor
 @UseCase
 public class CreateCustomerService implements CreateCustomerUseCase {
 
     private CreateCustomerPort createCustomerPort;
     private PasswordEncodePort passwordEncodePort;
     private ExistsCustomerPort existsCustomerPort;
+    private SendNotificationPort sendNotificationPort;
     private static final Logger loggerException = LogManager.getLogger(CreateCustomerService.class);
+
+    public CreateCustomerService(CreateCustomerPort createCustomerPort,
+                                 PasswordEncodePort passwordEncodePort,
+                                 ExistsCustomerPort existsCustomerPort,
+                                 @Qualifier("sendNotificationEmail") SendNotificationPort sendNotificationPort) {
+        this.createCustomerPort = createCustomerPort;
+        this.passwordEncodePort = passwordEncodePort;
+        this.existsCustomerPort = existsCustomerPort;
+        this.sendNotificationPort = sendNotificationPort;
+    }
 
     @Override
     public void createCustomer(Customer customer) throws GlobalException, ParameterNotFoundException {
@@ -43,6 +54,14 @@ public class CreateCustomerService implements CreateCustomerUseCase {
 
             customer.setPassword(passwordEncodePort.passwordEncoder(customer.getPassword()));
             createCustomerPort.createCustomer(customer);
+
+            DataNotification dataNotification = DataNotification.builder()
+                    .destination(customer.getEmail())
+                    .title("Title Test")
+                    .payload("Payload Test")
+                    .build();
+            sendNotificationPort.sendNotification(dataNotification);
+
         } catch (Exception e) {
             loggerException.error(e);
             throw new GlobalException("createCustomer: " + e.getMessage());
