@@ -7,7 +7,6 @@ import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
 import com.jmendoza.wallet.domain.model.transaction.Transaction;
 import com.jmendoza.wallet.domain.ports.inbound.transaction.CreateTransactionUseCase;
 import com.jmendoza.wallet.domain.ports.outbound.transaction.CreateTransactionPort;
-import com.jmendoza.wallet.domain.services.customer.DeleteCustomerService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
