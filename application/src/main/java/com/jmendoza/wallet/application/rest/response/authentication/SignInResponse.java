@@ -15,6 +15,7 @@ import java.util.Set;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SignInResponse {
     private String token;
+    private String tokenExpiration;
     private String customerId;
     private String firstName;
     private String lastName;

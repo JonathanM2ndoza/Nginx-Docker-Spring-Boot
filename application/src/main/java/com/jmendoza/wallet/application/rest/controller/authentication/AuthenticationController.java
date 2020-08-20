@@ -2,8 +2,10 @@ package com.jmendoza.wallet.application.rest.controller.authentication;
 
 import com.jmendoza.wallet.application.rest.request.authentication.SignInRequest;
 import com.jmendoza.wallet.application.rest.request.authentication.SignUpRequest;
+import com.jmendoza.wallet.application.rest.request.authentication.TokenRefreshRequest;
 import com.jmendoza.wallet.application.rest.response.authentication.SignInResponse;
 import com.jmendoza.wallet.application.rest.response.authentication.SignUpResponse;
+import com.jmendoza.wallet.application.rest.response.authentication.TokenRefreshResponse;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
 import com.jmendoza.wallet.domain.model.customer.Customer;
@@ -13,6 +15,7 @@ import com.jmendoza.wallet.security.service.AuthenticateService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +34,8 @@ public class AuthenticationController {
     private AuthenticateService authenticateService;
     @Autowired
     private ModelMapper modelMapper;
+    @Autowired
+    private Environment env;
 
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws ParameterNotFoundException, GlobalException {
@@ -46,6 +51,7 @@ public class AuthenticationController {
         Customer customer = getCustomerByEmailUseCase.getCustomerByEmail(signInRequest.getEmail());
 
         return ResponseEntity.ok().body(SignInResponse.builder().token(token)
+                .tokenExpiration(env.getProperty("security.jwt.expiration"))
                 .customerId(customer.getCustomerId())
                 .firstName(customer.getFirstName())
                 .lastName(customer.getLastName())
@@ -54,5 +60,14 @@ public class AuthenticationController {
                 .createdAt(customer.getCreatedAt())
                 .updatedAt(customer.getUpdatedAt())
                 .build());
+    }
+
+    @PostMapping("/refresh_token")
+    public ResponseEntity<TokenRefreshResponse> tokenRefresh(@RequestBody TokenRefreshRequest tokenRefreshRequest) throws GlobalException {
+        TokenRefreshResponse tokenRefreshResponse = TokenRefreshResponse.builder().build();
+        tokenRefreshResponse.setToken(authenticateService.refreshToken(tokenRefreshRequest.getEmail(), tokenRefreshRequest.getEncryptedHash()));
+        tokenRefreshResponse.setTokenExpiration(env.getProperty("security.jwt.expiration"));
+
+        return ResponseEntity.ok().body(tokenRefreshResponse);
     }
 }
