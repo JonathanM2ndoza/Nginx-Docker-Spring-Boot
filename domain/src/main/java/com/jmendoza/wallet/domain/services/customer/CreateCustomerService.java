@@ -11,11 +11,12 @@ import com.jmendoza.wallet.domain.ports.outbound.customer.CreateCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.ExistsCustomerPort;
 import com.jmendoza.wallet.domain.ports.outbound.customer.PasswordEncodePort;
 import com.jmendoza.wallet.domain.ports.outbound.notification.SendNotificationPort;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Qualifier;
 
+@AllArgsConstructor
 @UseCase
 public class CreateCustomerService implements CreateCustomerUseCase {
 
@@ -23,17 +24,8 @@ public class CreateCustomerService implements CreateCustomerUseCase {
     private PasswordEncodePort passwordEncodePort;
     private ExistsCustomerPort existsCustomerPort;
     private SendNotificationPort sendNotificationPort;
-    private static final Logger loggerException = LogManager.getLogger(CreateCustomerService.class);
 
-    public CreateCustomerService(CreateCustomerPort createCustomerPort,
-                                 PasswordEncodePort passwordEncodePort,
-                                 ExistsCustomerPort existsCustomerPort,
-                                 @Qualifier("sendNotificationEmail") SendNotificationPort sendNotificationPort) {
-        this.createCustomerPort = createCustomerPort;
-        this.passwordEncodePort = passwordEncodePort;
-        this.existsCustomerPort = existsCustomerPort;
-        this.sendNotificationPort = sendNotificationPort;
-    }
+    private static final Logger loggerException = LogManager.getLogger(CreateCustomerService.class);
 
     @Override
     public void createCustomer(Customer customer) throws GlobalException, ParameterNotFoundException {
