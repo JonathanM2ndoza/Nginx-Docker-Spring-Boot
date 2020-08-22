@@ -2,11 +2,12 @@ package com.jmendoza.wallet.infrastructure.notification.email;
 
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.domain.model.notification.DataNotification;
-import com.jmendoza.wallet.domain.ports.outbound.notification.SendNotificationPort;
+import com.jmendoza.wallet.infrastructure.notification.SendNotification;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -15,12 +16,13 @@ import org.springframework.stereotype.Component;
 import javax.mail.internet.MimeMessage;
 
 @Component
-@Qualifier("sendNotificationEmail")
-public class SendNotificationEmailAdapter implements SendNotificationPort {
+@Qualifier("SendNotificationEmail")
+@Primary
+public class SendNotificationEmail implements SendNotification {
 
     @Autowired
     private JavaMailSender javaMailSender;
-    private static final Logger loggerException = LogManager.getLogger(SendNotificationEmailAdapter.class);
+    private static final Logger loggerException = LogManager.getLogger(SendNotificationEmail.class);
 
     @Override
     @Async("emailExecutor")
@@ -37,5 +39,10 @@ public class SendNotificationEmailAdapter implements SendNotificationPort {
             loggerException.error(e);
             throw new GlobalException("sendNotification: " + e.getMessage());
         }
+    }
+
+    @Override
+    public String getTypeNotification() {
+        return "email";
     }
 }
