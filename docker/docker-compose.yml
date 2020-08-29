@@ -12,7 +12,7 @@ services:
     volumes:
       - database_volume:/var/lib/postgresql/data
 
-  api-wallet:
+  api-wallet-1:
     build: ./tomcat
     image: api-wallet:1.0
     ports:
@@ -22,7 +22,23 @@ services:
       - database_network
       - nginx_network
     volumes:
-      - api_volume:/usr/local/tomcat/data
+      - api1_data_volume:/usr/local/tomcat/data
+      - api1_logs_volume:/usr/local/tomcat/logs
+    depends_on:
+      - db-wallet
+
+  api-wallet-2:
+    build: ./tomcat
+    image: api-wallet:1.0
+    ports:
+      - 8082:8080
+      - 9001:8000
+    networks:
+      - database_network
+      - nginx_network
+    volumes:
+      - api2_data_volume:/usr/local/tomcat/data
+      - api2_logs_volume:/usr/local/tomcat/logs
     depends_on:
       - db-wallet
 
@@ -32,9 +48,12 @@ services:
     ports:
       - 80:80
     depends_on:
-      - api-wallet
+      - api-wallet-1
+      - api-wallet-2
     networks:
       - nginx_network
+    volumes:
+      - nginx_logs_volume:/var/log/nginx
 
 networks:
   nginx_network:
@@ -45,4 +64,8 @@ networks:
 
 volumes:
   database_volume:
-  api_volume:
+  api1_data_volume:
+  api1_logs_volume:
+  api2_data_volume:
+  api2_logs_volume:
+  nginx_logs_volume:
