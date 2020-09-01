@@ -47,6 +47,8 @@ services:
     image: nginx-wallet:1.0
     ports:
       - 80:80
+    extra_hosts:
+      nginx-wallet: 127.0.0.1
     depends_on:
       - api-wallet-1
       - api-wallet-2
