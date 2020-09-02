@@ -22,4 +22,5 @@ public class Customer {
     private Set<Role> roles;
     private Date createdAt;
     private Date updatedAt;
+    private String token;
 }
