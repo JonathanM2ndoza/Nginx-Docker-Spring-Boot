@@ -9,8 +9,8 @@ import com.jmendoza.wallet.application.rest.response.authentication.TokenRefresh
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
 import com.jmendoza.wallet.domain.model.customer.Customer;
+import com.jmendoza.wallet.domain.ports.inbound.authentication.SignInUseCase;
 import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
-import com.jmendoza.wallet.domain.ports.inbound.customer.GetCustomerByEmailUseCase;
 import com.jmendoza.wallet.security.service.AuthenticateService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -28,8 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
     private CreateCustomerUseCase createCustomerUseCase;
-    private GetCustomerByEmailUseCase getCustomerByEmailUseCase;
-
+    private SignInUseCase signInUseCase;
     @Autowired
     private AuthenticateService authenticateService;
     @Autowired
@@ -46,11 +45,9 @@ public class AuthenticationController {
 
     @PostMapping("/signin")
     public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest) throws GlobalException {
+        Customer customer = signInUseCase.signIn(signInRequest.getEmail(), signInRequest.getPassword());
 
-        String token = authenticateService.createToken(signInRequest.getEmail(), signInRequest.getPassword());
-        Customer customer = getCustomerByEmailUseCase.getCustomerByEmail(signInRequest.getEmail());
-
-        return ResponseEntity.ok().body(SignInResponse.builder().token(token)
+        return ResponseEntity.ok().body(SignInResponse.builder().token(customer.getToken())
                 .tokenExpiration(env.getProperty("security.jwt.expiration"))
                 .customerId(customer.getCustomerId())
                 .firstName(customer.getFirstName())
