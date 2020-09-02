@@ -7,9 +7,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
 
 @Service
 public class AuthenticateService {
@@ -23,22 +25,21 @@ public class AuthenticateService {
     @Autowired
     private Environment env;
 
-    public String createToken(String email, String password) throws GlobalException {
-
-        Authentication authentication;
+    public boolean passwordMatch(String email, String password) throws GlobalException {
+        boolean passwordMatch = true;
         try {
-            authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(email, password)
-            );
-
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            return jwtUtil.generateToken(userDetails);
-
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
         } catch (BadCredentialsException e) {
-            throw new GlobalException("Incorrect username or password: " + e.getMessage());
+            passwordMatch = false;
         } catch (Exception e) {
-            throw new GlobalException("createToken: " + e.getMessage());
+            throw new GlobalException("passwordMatch: " + e.getMessage());
         }
+        return passwordMatch;
+    }
+
+    public String createToken(String email, String password) {
+        UserDetails userDetails = new User(email, password, Collections.emptyList());
+        return jwtUtil.generateToken(userDetails);
     }
 
     public String refreshToken(String email, String encryptedHash) throws GlobalException {
