@@ -22,6 +22,11 @@
         </dependency>
         <dependency>
             <groupId>com.jmendoza.wallet</groupId>
+            <artifactId>security</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jmendoza.wallet</groupId>
             <artifactId>common</artifactId>
             <version>1.0</version>
         </dependency>
