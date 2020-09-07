@@ -21,7 +21,7 @@ public class SendNotificationAdapter implements SendNotificationPort {
     private Map<String, SendNotification> sendNotificationMap;
 
     @Autowired
-    public void SendNotificationAdapter(List<SendNotification> sendNotifications) {
+    public SendNotificationAdapter(List<SendNotification> sendNotifications) {
         sendNotificationMap = sendNotifications.stream()
                 .collect(Collectors.toMap(SendNotification::getTypeNotification, Function.identity()));
     }
