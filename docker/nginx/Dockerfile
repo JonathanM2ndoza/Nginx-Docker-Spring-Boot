@@ -12,5 +12,11 @@ RUN cd /etc/nginx \
 
 COPY ./certs/* /etc/nginx/certs/
 
+RUN apt-get update \
+    && apt-get install -y certbot
+
+RUN apt-get update \
+    && apt-get install -y python-certbot-nginx
+
 EXPOSE 80
 
