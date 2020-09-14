@@ -289,6 +289,12 @@ jmendoza@jmendoza-ThinkPad-T420:~$ docker inspect docker_api-wallet_1
 ![Screenshot](prtsc/Deploy-Wallet-21.png)
 
 
+
+## Entity Relationship Diagram (ERD)
+
+![Screenshot](prtsc/Api-Wallet-Zelle-15.png)
+
+
 ## Spring REST Docs
 
 **Note: Before run maven with test, please add the following entry in your hosts file**
