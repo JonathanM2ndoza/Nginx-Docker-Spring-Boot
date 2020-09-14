@@ -44,6 +44,7 @@ public class SecurityRequestFilter extends OncePerRequestFilter {
                     usernamePasswordAuthenticationToken
                             .setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+                    request.setAttribute(AuthorizationConstanst.USER,username);
                 }
             }
         } catch (Exception e) {
