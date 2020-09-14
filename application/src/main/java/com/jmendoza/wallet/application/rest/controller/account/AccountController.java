@@ -35,8 +35,8 @@ public class AccountController {
         logContext.setWildcard1("Test Wildcard1");
         logContext.setWildcard2("Test Wildcard2");
         logContext.setWildcard3("Test Wildcard3");
-
         log.info(logContext, "Test Message");
+
         createAccountUseCase.createAccount(account);
 
         return ResponseEntity.ok().body(CreateAccountResponse.builder().accountId(account.getAccountId()).build());

@@ -6,8 +6,11 @@ import com.jmendoza.wallet.application.rest.request.authentication.TokenRefreshR
 import com.jmendoza.wallet.application.rest.response.authentication.SignInResponse;
 import com.jmendoza.wallet.application.rest.response.authentication.SignUpResponse;
 import com.jmendoza.wallet.application.rest.response.authentication.TokenRefreshResponse;
+import com.jmendoza.wallet.common.constants.authorization.AuthorizationConstanst;
 import com.jmendoza.wallet.common.exception.GlobalException;
 import com.jmendoza.wallet.common.exception.ParameterNotFoundException;
+import com.jmendoza.wallet.common.log.LogContext;
+import com.jmendoza.wallet.common.log.LogFacade;
 import com.jmendoza.wallet.domain.model.customer.Customer;
 import com.jmendoza.wallet.domain.ports.inbound.authentication.SignInUseCase;
 import com.jmendoza.wallet.domain.ports.inbound.customer.CreateCustomerUseCase;
@@ -21,6 +24,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -36,6 +41,8 @@ public class AuthenticationController {
     @Autowired
     private Environment env;
 
+    private static final LogFacade log = new LogFacade(AuthenticationController.class);
+
     @PostMapping("/signup")
     public ResponseEntity<SignUpResponse> signUp(@RequestBody SignUpRequest signUpRequest) throws ParameterNotFoundException, GlobalException {
         Customer customer = modelMapper.map(signUpRequest, Customer.class);
@@ -44,7 +51,10 @@ public class AuthenticationController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest) throws GlobalException {
+    public ResponseEntity<SignInResponse> signIn(@RequestBody SignInRequest signInRequest, HttpServletRequest request) throws GlobalException {
+        LogContext logContext = new LogContext(request.getRemoteAddr(), "Sign In", AuthorizationConstanst.ANONYMOUS, "signIn");
+        log.info(logContext, "Test Message");
+
         Customer customer = signInUseCase.signIn(signInRequest.getEmail(), signInRequest.getPassword());
 
         return ResponseEntity.ok().body(SignInResponse.builder().token(customer.getToken())
