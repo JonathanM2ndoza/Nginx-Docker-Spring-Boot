@@ -1,5 +1,6 @@
 package com.jmendoza.wallet.application.rest.controller.authentication;
 
+import com.google.gson.JsonObject;
 import com.jmendoza.wallet.application.rest.request.authentication.SignInRequest;
 import com.jmendoza.wallet.application.rest.request.authentication.SignUpRequest;
 import com.jmendoza.wallet.application.rest.request.authentication.TokenRefreshRequest;
@@ -20,12 +21,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.util.Random;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -76,5 +77,14 @@ public class AuthenticationController {
         tokenRefreshResponse.setTokenExpiration(env.getProperty("security.jwt.expiration"));
 
         return ResponseEntity.ok().body(tokenRefreshResponse);
+    }
+
+    @GetMapping("/random_number")
+    public ResponseEntity getRandomNumber() throws NoSuchAlgorithmException {
+        Random rand = SecureRandom.getInstance("SHA1PRNG");
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("randomNumber", String.format("%06d", rand.nextInt(999999)));
+
+        return ResponseEntity.ok().body(jsonObject.toString());
     }
 }
