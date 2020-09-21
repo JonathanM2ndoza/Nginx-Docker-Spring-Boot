@@ -51,9 +51,9 @@ public class AuthenticationControllerTest {
     public void signUp() throws Exception {
 
         SignUpRequest signUpRequest = new SignUpRequest();
-        signUpRequest.setFirstName("Jonathan1");
-        signUpRequest.setLastName("Mendoza1");
-        signUpRequest.setEmail("jmendoza1@gmail.com");
+        signUpRequest.setFirstName("Jonathan");
+        signUpRequest.setLastName("Mendoza");
+        signUpRequest.setEmail("jmendoza@gmail.com");
         signUpRequest.setPassword("123456789");
 
         Set<Role> roles = new HashSet<>();
@@ -99,7 +99,7 @@ public class AuthenticationControllerTest {
     public void signIn() throws Exception {
 
         SignInRequest signInRequest = new SignInRequest();
-        signInRequest.setEmail("jmendoza1@gmail.com");
+        signInRequest.setEmail("jmendoza@gmail.com");
         signInRequest.setPassword("123456789");
 
         ResultActions result = this.mockMvc
@@ -113,6 +113,7 @@ public class AuthenticationControllerTest {
 
                         responseFields(
                                 fieldWithPath(TOKEN.getField()).description(TOKEN.getDescription()),
+                                fieldWithPath(TOKEN_EXPIRATION.getField()).description(TOKEN_EXPIRATION.getDescription()),
                                 fieldWithPath(CUSTOMER_ID.getField()).description(CUSTOMER_ID.getDescription()),
                                 fieldWithPath(FIRST_NAME.getField()).description(FIRST_NAME.getDescription()),
                                 fieldWithPath(LAST_NAME.getField()).description(LAST_NAME.getDescription()),

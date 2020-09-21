@@ -8,6 +8,7 @@ public enum AuthenticationFieldsTest {
     EMAIL("email", "email description"),
     PASSWORD("password", "password description"),
     TOKEN("token", "token description"),
+    TOKEN_EXPIRATION("tokenExpiration", "token expiration"),
     CUSTOMER_ID("customerId", "customerId description"),
     FIRST_NAME("firstName", "firstName description"),
     LAST_NAME("lastName", "lastName description"),
