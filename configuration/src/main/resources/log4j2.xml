@@ -8,7 +8,7 @@
 <Configuration status="WARN" monitorInterval="30">
     <Properties>
         <Property name="LOG_PATTERN">
-            [%d{yyyy-MM-dd HH:mm:ss}] [%-5level] [%X{ipAddress}] [%X{description}] [%X{user}] [%X{service}] %equals{[%X{wildcard1}]}{[]}{%X{wildcard1}} %equals{[%X{wildcard2}]}{[]}{%X{wildcard2}} %equals{[%X{wildcard3}]}{[]}{%X{wildcard3}} [${hostName}] [%t] [%c{3}] ===> %m%n
+            [%d{yyyy-MM-dd HH:mm:ss.SSS}] [%-5level] [%X{ipAddress}] [%X{description}] [%X{user}] [%X{service}] %equals{[%X{wildcard1}]}{[]}{%X{wildcard1}} %equals{[%X{wildcard2}]}{[]}{%X{wildcard2}} %equals{[%X{wildcard3}]}{[]}{%X{wildcard3}} [${hostName}] [%t] [%c{3}] ===> %m%n
         </Property>
     </Properties>
     <Appenders>
