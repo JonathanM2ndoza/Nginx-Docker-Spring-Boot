@@ -12,5 +12,14 @@ RUN cd /etc/nginx \
 
 COPY ./certs/* /etc/nginx/certs/
 
+RUN cd /home \
+    && mkdir api-docs \
+    && cd api-docs \
+    && mkdir v1 \
+    && cd ../ \
+    && chmod -R 755 api-docs
+
+COPY ./static/* /home/api-docs/v1/
+
 EXPOSE 80
 
